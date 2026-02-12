@@ -1,0 +1,9 @@
+{
+	"name": "vjysqlsrvr",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2ab8c4fa-51d7-4369-afd6-b6e34ff5b195",
+		"tenantId": "fecfb705-3e39-4a4e-9d48-78bd7d689881"
+	}
+}
