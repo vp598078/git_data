@@ -1,0 +1,77 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "vjysqlsrvr"
+		},
+		"ls_param_json_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_param_json'"
+		},
+		"ls_sink_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sink'"
+		},
+		"ls_source_git_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_source_git'"
+		},
+		"ls_source_git_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
+		},
+		"ls_source_git_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "vp598078"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "vjysqlsrvr_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_param_json_connectionString": {
+						"value": "[parameters('ls_param_json_connectionString')]"
+					},
+					"ls_sink_connectionString": {
+						"value": "[parameters('ls_sink_connectionString')]"
+					},
+					"ls_source_git_password": {
+						"value": "[parameters('ls_source_git_password')]"
+					},
+					"ls_source_git_properties_typeProperties_url": {
+						"value": "[parameters('ls_source_git_properties_typeProperties_url')]"
+					},
+					"ls_source_git_properties_typeProperties_userName": {
+						"value": "[parameters('ls_source_git_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
